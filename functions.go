@@ -129,8 +129,8 @@ func GetRamInfo() string {
 
 	// Define thresholds. Adjust these based on what you consider acceptable and low.
 	const (
-		acceptableThreshold = 0.2 // 20%
-		lowThreshold        = 0.1 // 10%
+		acceptableThreshold = 0.6 // 60%
+		lowThreshold        = 0.3 // 30%
 	)
 
 	memFreeStr := fmt.Sprintf("%d MiB", memFree/1024)
@@ -138,10 +138,10 @@ func GetRamInfo() string {
 
 	switch {
 	case freePercentage > acceptableThreshold:
-		return color.New(color.FgHiYellow).Sprint(memFreeStr) + " " + color.New(color.FgHiWhite).Sprint(totalStr)
-	case freePercentage <= acceptableThreshold && freePercentage > lowThreshold:
-		return color.New(color.FgHiGreen).Sprint(memFreeStr) + " " + color.New(color.FgHiWhite).Sprint(totalStr)
-	default:
 		return color.New(color.FgHiRed).Sprint(memFreeStr) + " " + color.New(color.FgHiWhite).Sprint(totalStr)
+	case freePercentage <= acceptableThreshold && freePercentage > lowThreshold:
+		return color.New(color.FgYellow).Sprint(memFreeStr) + " " + color.New(color.FgHiWhite).Sprint(totalStr)
+	default:
+		return color.New(color.FgHiGreen).Sprint(memFreeStr) + " " + color.New(color.FgHiWhite).Sprint(totalStr)
 	}
 }
