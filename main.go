@@ -7,7 +7,6 @@ import (
 )
 
 func main() {
-
 	yellow := color.New(color.FgHiYellow).SprintFunc()
 	blue := color.New(color.FgBlue).SprintFunc()
 
@@ -18,7 +17,7 @@ func main() {
 		[]string{yellow("█████╗  ██╔██╗ ██║██║██║  ███╗███████╗"), blue("User:"), GetCurrentUser()},
 		[]string{yellow("██╔══╝  ██║╚██╗██║██║██║   ██║╚════██║"), blue("CPU:"), GetCpuInfo()},
 		[]string{yellow("███████╗██║ ╚████║██║╚██████╔╝███████║"), blue("GPU:"), GetGpuInfo()},
-		[]string{yellow("╚══════╝╚═╝  ╚═══╝╚═╝ ╚═════╝ ╚══════╝"), blue("RAM"), GetRamInfo()},
+		[]string{yellow("╚══════╝╚═╝  ╚═══╝╚═╝ ╚═════╝ ╚══════╝"), blue("RAM:"), GetRamInfo()},
 		[]string{" ", " ", " "},
 	}
 
