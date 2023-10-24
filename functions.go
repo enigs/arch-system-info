@@ -127,21 +127,21 @@ func GetRamInfo() string {
 
 	freePercentage := float64(memFree) / float64(memTotal)
 
-	// Define thresholds. Adjust these based on what you consider acceptable and low.
 	const (
-		acceptableThreshold = 0.6 // 60%
-		lowThreshold        = 0.3 // 30%
+		acceptableThreshold = 0.85 // 85%
+		lowThreshold        = 0.65 // 65%
 	)
 
 	memFreeStr := fmt.Sprintf("%d MiB", memFree/1024)
 	totalStr := color.New(color.FgHiWhite).Sprint(fmt.Sprintf("/ %d MiB", memTotal/1024))
 
-	switch {
-	case freePercentage > acceptableThreshold:
-		return color.New(color.FgHiRed).Sprint(memFreeStr) + " " + color.New(color.FgHiWhite).Sprint(totalStr)
-	case freePercentage <= acceptableThreshold && freePercentage > lowThreshold:
+	if freePercentage <= acceptableThreshold && freePercentage > lowThreshold {
 		return color.New(color.FgYellow).Sprint(memFreeStr) + " " + color.New(color.FgHiWhite).Sprint(totalStr)
-	default:
-		return color.New(color.FgHiGreen).Sprint(memFreeStr) + " " + color.New(color.FgHiWhite).Sprint(totalStr)
 	}
+
+	if freePercentage > acceptableThreshold {
+		return color.New(color.FgHiRed).Sprint(memFreeStr) + " " + color.New(color.FgHiWhite).Sprint(totalStr)
+	}
+
+	return color.New(color.FgHiGreen).Sprint(memFreeStr) + " " + color.New(color.FgHiWhite).Sprint(totalStr)
 }
