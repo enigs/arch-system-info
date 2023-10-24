@@ -129,7 +129,7 @@ func GetRamInfo() string {
 
 	const (
 		acceptableThreshold = 0.85 // 85%
-		lowThreshold        = 0.65 // 65%
+		lowThreshold        = 0.45 // 45%
 	)
 
 	memFreeStr := fmt.Sprintf("%d MiB", memFree/1024)
